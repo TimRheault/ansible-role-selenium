@@ -20,7 +20,7 @@ exec="$xvfb_bin {{ selenium_xvfb_args }} --server-num=$display $java_bin"
 args=" -client -jar $selenium_jar_file -p {{ selenium_port }}"
 lockfile="/var/lock/subsys/selenium"
 pidfile="$selenium_dir/selenium.pid"
-logfile="$selenium_dir/selenium.log"
+logfile="{{ selenium_log_dir }}/selenium.%Y-%m-%d.log"
 prog="selenium"
 
 RETVAL=0
