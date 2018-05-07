@@ -9,13 +9,16 @@
   tags: [configuration, selenium]
 
 - name: create directory
-  file: "path={{ selenium_install_dir }}/selenium state=directory recurse=yes"
+  file: "path={{ selenium_install_dir }}/selenium state=directory recurse=yes owner=mwcomm group=mwcomm mode=755"
   tags: [configuration, selenium, selenium-create-directory]
 
 - name: Download Selenium
   get_url:
     url: "http://selenium-release.storage.googleapis.com/{{ selenium_version | regex_replace('\\.[0-9]+$', '') }}/selenium-server-standalone-{{ selenium_version }}.jar"
     dest: "{{ selenium_install_dir }}/selenium/selenium-server-standalone-{{ selenium_version }}.jar"
+    owner: mwcomm
+    group: mwcomm
+    mode: 755
   tags: [configuration, selenium, selenium-download]
 
 - name: Install FireFox (if configured)
@@ -64,6 +67,8 @@
   unarchive:
     src: "https://chromedriver.storage.googleapis.com/{{ chromedriver_latest.content | trim }}/chromedriver_linux64.zip"
     dest: /usr/bin
+    owner: mwcomm
+    group: mwcomm
     mode: 0755
     copy: no
   when: selenium_install_chrome
