@@ -18,7 +18,6 @@
     dest: "{{ selenium_install_dir }}/selenium/selenium-server-standalone-{{ selenium_version }}.jar"
     owner: mwcomm
     group: mwcomm
-    mode: 755
   tags: [configuration, selenium, selenium-download]
 
 - name: Install FireFox (if configured)
