@@ -103,6 +103,9 @@
   register: selenium_running
   ignore_errors: yes
   changed_when: false
+  
+- name: Reload Selenium service
+  shell: 'systemctl daemon-reload'
 
 - name: Ensure selenium is running
   service: name=selenium state=started enabled=yes
