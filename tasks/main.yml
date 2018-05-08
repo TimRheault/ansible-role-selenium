@@ -87,10 +87,20 @@
   when: "ansible_service_mgr != 'systemd'"
   tags: [configuration, selenium, selenium-install]
 
-- name: Install systemd unit file (for systemd systems)
+- name: Install systemd hub unit file (for systemd systems)
   template:
     src: "selenium-unit.j2"
     dest: /etc/systemd/system/selenium.service
+    owner: root
+    group: root
+    mode: 0755
+  when: "ansible_service_mgr == 'systemd'"
+  tags: [configuration, selenium, selenium-install]
+  
+- name: Install systemd node unit file (for systemd systems)
+  template:
+    src: "selenium-node.j2"
+    dest: /etc/systemd/system/selenium.node.service
     owner: root
     group: root
     mode: 0755
