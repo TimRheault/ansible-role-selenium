@@ -116,6 +116,13 @@
   
 - name: Reload Selenium service
   shell: 'systemctl daemon-reload'
+  
+- name: ensure the application is started as a service
+  systemd:
+    name: selenium.node.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
 
 - name: Ensure selenium is running
   service: name=selenium state=started enabled=yes
