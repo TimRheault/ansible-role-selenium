@@ -3,7 +3,7 @@ Description=selenium test framework
 After=syslog.target network.target
 
 [Service]
-ExecStart=/usr/bin/java -jar {{ selenium_install_dir }}/selenium/selenium-server-standalone-3.8.1.jar -role hub
+ExecStart=/usr/bin/java -jar {{ selenium_install_dir }}/selenium/selenium-server-standalone-3.8.1.jar -role hub 2>/cwt/log/selenium/selenium_hub.log
 Restart=on-failure
 RestartSec=20s
 
